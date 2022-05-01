@@ -8,7 +8,7 @@ const PhotoDelete = ({ id }) => {
   const handleClick = async () => {
     const confirm = window.confirm("Deseja deletar a foto?");
     if (confirm) {
-      const token = localStorage.getItem("token");
+      const token = window.localStorage.getItem("token");
       const { url, options } = PHOTO_DELETE(id, token);
       const { response } = await request(url, options);
       if (response.ok) window.location.reload();

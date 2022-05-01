@@ -6,7 +6,8 @@ export const UserContext = createContext();
 
 const UserStorage = ({ children }) => {
   const [data, setData] = useState(null);
-  const [login, setLogin] = useState(!!window.localStorage.getItem("token")); // Evita que o usuário logado seja redirecionado para a página de login caso atualize a página
+  // Evita que o usuário logado seja redirecionado para a página de login caso atualize a página
+  const [login, setLogin] = useState(!!window.localStorage.getItem("token"));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const UserStorage = ({ children }) => {
       const response = await fetch(url, options);
       if (response.ok) {
         const { token } = await response.json();
-        localStorage.setItem("token", token);
+        window.localStorage.setItem("token", token);
         setData(await getUser(token));
         setLogin(true);
         navigate("/conta");
@@ -45,13 +46,13 @@ const UserStorage = ({ children }) => {
     setData(null);
     setLoading(false);
     setError(null);
-    localStorage.removeItem("token");
+    window.localStorage.removeItem("token");
     navigate("/login");
   }, [navigate]);
 
   useEffect(() => {
     const autoLogin = async () => {
-      const token = localStorage.getItem("token");
+      const token = window.localStorage.getItem("token");
       if (token) {
         try {
           setError(null);

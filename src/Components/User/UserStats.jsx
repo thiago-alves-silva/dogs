@@ -10,7 +10,7 @@ const UserStats = () => {
   const { data, error, loading, request } = useFetch();
   useEffect(() => {
     const getData = () => {
-      const token = localStorage.getItem("token");
+      const token = window.localStorage.getItem("token");
       const { url, options } = STATS_GET(token);
       request(url, options);
     };

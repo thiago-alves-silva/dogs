@@ -25,7 +25,7 @@ const UserPhotoPost = () => {
     formData.append("peso", peso.value);
     formData.append("idade", idade.value);
 
-    const token = localStorage.getItem("token");
+    const token = window.localStorage.getItem("token");
     const { url, options } = PHOTO_POST(formData, token);
     const { response } = await request(url, options);
     if (response.ok) {
