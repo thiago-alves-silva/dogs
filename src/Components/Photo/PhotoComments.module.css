@@ -2,8 +2,6 @@
   overflow-y: auto;
   word-break: break-all;
   padding: 0 2rem;
-  height: max-content;
-  max-height: 200px;
 }
 
 .single.comments {
@@ -26,4 +24,11 @@
 
 .comments li:hover .timeAgo {
   opacity: 0.5;
+}
+
+@media (max-width: 64rem) {
+  .comments {
+    height: max-content;
+    max-height: 200px;
+  }
 }
