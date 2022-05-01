@@ -3,6 +3,7 @@ import { UserContext } from "../../UserContext";
 import Loading from "../Helper/Loading";
 import FeedModal from "./FeedModal";
 import FeedPhotos from "./FeedPhotos";
+import styles from "./Feed.module.css";
 
 const Feed = ({ user }) => {
   const [modalPhoto, setModalPhoto] = useState(null);
@@ -37,7 +38,7 @@ const Feed = ({ user }) => {
     return <Loading />;
   }
   return (
-    <div>
+    <>
       {modalPhoto && (
         <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
       )}
@@ -51,7 +52,10 @@ const Feed = ({ user }) => {
           setInfinite={setInfinite}
         />
       ))}
-    </div>
+      {!infinite && !loading && (
+        <p className={styles.infinite}>Não existem mais postagens.</p>
+      )}
+    </>
   );
 };
 

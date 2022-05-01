@@ -27,7 +27,7 @@ const FeedPhotos = ({ setModalPhoto, user, page, setLoading, setInfinite }) => {
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
   return data ? (
-    <div>
+    <>
       <ul className={`${styles.feed} anime-left`}>
         {data.map((photo) => (
           <FeedPhotosItem
@@ -37,7 +37,7 @@ const FeedPhotos = ({ setModalPhoto, user, page, setLoading, setInfinite }) => {
           />
         ))}
       </ul>
-    </div>
+    </>
   ) : null;
 };
 
